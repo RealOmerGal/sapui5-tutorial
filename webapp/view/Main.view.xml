@@ -1,0 +1,61 @@
+<mvc:View
+    controllerName="com.omer.myapp.controller.Main"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    core:require="{
+		formatter: 'com/omer/myapp/model/formatter'
+	}"
+>
+    <Page
+        title="{i18n>appTitle}"
+        id="page"
+    >
+        <Table
+            id="productTable"
+            items="{/Products}"
+            inset="false"
+        >
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="Product List" />
+                </Toolbar>
+            </headerToolbar>
+
+            <columns>
+                <Column>
+                    <Text text="Product ID" />
+                </Column>
+                <Column>
+                    <Text text="Name" />
+                </Column>
+                <Column>
+                    <Text text="Price" />
+                </Column>
+                <Column>
+                    <Text text="Stock" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem
+                    press="onItemPress"
+                    type="Active"
+                >
+                    <cells>
+                        <Text text="{id}" />
+                        <Text text="{name}" />
+                        <Text
+                            text="{path: 'price', formatter: 'formatter.formatPrice'}"
+                        />
+                        <ObjectStatus
+                            text="{path: 'stock'}"
+                            state="{path: 'stock', formatter: 'formatter.stockState'}"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

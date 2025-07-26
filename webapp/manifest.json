@@ -1,0 +1,109 @@
+{
+	"_version": "1.12.0",
+
+	"sap.app": {
+		"id": "com.omer.myapp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "${version}"
+		},
+		"dataSources": {
+        "mainService": {
+            "uri": "model/products.json",
+            "type": "JSON"
+        }
+    }
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.omer.myapp.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+
+		"dependencies": {
+			"minUI5Version": "1.136.1",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+
+		"handleValidation": true,
+
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+
+		"models": {
+    "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+            "bundleName": "com.omer.myapp.i18n.i18n",
+            "supportedLocales": [
+                "en",
+                "de"
+            ],
+            "fallbackLocale": "en",
+            "async": true
+        }
+    },
+    "": {
+        "dataSource": "mainService",
+        "type": "sap.ui.model.json.JSONModel"
+    }
+},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.omer.myapp.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target":"notFound"
+				}
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "main",
+					"target": "main"
+				},
+				{
+					"pattern": "detail/{productIndex}",
+					"name": "detail",
+					"target":"detail"
+				}
+			],
+			"targets": {
+				"main": {
+					"viewId": "main",
+					"viewName": "Main"
+				},
+				"detail": {
+					"viewId": "detail",
+					"viewName": "Detail"
+				},
+				"notFound": {
+					"viewName": "NotFound"
+				}
+			}
+		}
+	}
+}

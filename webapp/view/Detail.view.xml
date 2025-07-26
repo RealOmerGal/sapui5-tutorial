@@ -1,0 +1,45 @@
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    controllerName="com.omer.myapp.controller.Detail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    core:require="{
+		formatter: 'com/omer/myapp/model/formatter'
+	}"
+>
+    <Page
+        title="Product Details"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
+        <VBox class="sapUiSmallMargin">
+            <ObjectHeader
+                title="{name}"
+                number="{price}"
+                numberUnit="₪"
+                intro="Product ID: {id}"
+            />
+
+            <Text
+                text="Full Details:"
+                class="sapUiSmallMarginTop sapUiTinyMarginBottom"
+            />
+
+            <form:SimpleForm editable="false">
+                <Label text="Product ID" />
+                <Text text="{id}" />
+
+                <Label text="Name" />
+                <Text text="{name}" />
+
+                <Label text="Price" />
+                <Text
+                    text="{path: 'price' ,formatter: 'formatter.formatPrice'}"
+                />
+                <Label text="Stock" />
+                <Text text="{stock}" />
+            </form:SimpleForm>
+        </VBox>
+    </Page>
+</mvc:View>
