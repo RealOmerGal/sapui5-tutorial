@@ -17,7 +17,7 @@
             <ObjectHeader
                 title="{name}"
                 number="{price}"
-                numberUnit="₪"
+                numberUnit="$"
                 intro="Product ID: {id}"
             />
 

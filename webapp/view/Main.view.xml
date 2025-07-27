@@ -20,6 +20,16 @@
             <headerToolbar>
                 <Toolbar>
                     <Title text="Product List" />
+                    <Button
+                        icon="sap-icon://sort"
+                        press="onSort"
+                        id="sortButton"
+                    />
+                    <SearchField
+                        id="searchField"
+                        placeholder="Search..."
+                        liveChange="onSearch"
+                    />
                 </Toolbar>
             </headerToolbar>
 
