@@ -1,0 +1,50 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="CreateProductDialog"
+        title="Create New Product"
+        draggable="true"
+        resizable="true"
+    >
+        <VBox class="sapUiSmallMargin">
+            <Label text="Product ID" />
+            <Input
+                id="inputProductId"
+                value="{productModel>/id}"
+            />
+
+            <Label text="Name" />
+            <Input
+                id="inputProductName"
+                value="{productModel>/name}"
+            />
+
+            <Label text="Price" />
+            <Input
+                id="inputProductPrice"
+                type="Number"
+            />
+
+            <Label text="Stock" />
+            <Input
+                id="inputProductStock"
+                type="Number"
+            />
+        </VBox>
+        <beginButton>
+            <Button
+                text="Create"
+                press="onCreateProduct"
+                type="Emphasized"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Cancel"
+                press="onCancel"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

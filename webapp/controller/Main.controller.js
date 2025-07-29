@@ -1,7 +1,8 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/ui/model/json/JSONModel" 
-], function(Controller, JSONModel) { 
+  "sap/ui/model/json/JSONModel" ,
+  "sap/ui/core/Fragment"
+], function(Controller, JSONModel, Fragment ) { 
   "use strict";
 
   const TABLE_ID = "productTable";
@@ -30,12 +31,37 @@ sap.ui.define([
     oButton.setTooltip(this._bSortFlag ? "Sort Ascending" : "Sort Descending");
     this._bSortFalg = !this._bSortFalg
   },
-  onSearch:function(oEvent) {
 
+  onSearch:function(oEvent) {
     const searchValue = oEvent.getParameter("newValue");
     const oBinding = this.byId(TABLE_ID).getBinding("items");
     const oFilter = new sap.ui.model.Filter(SEARCH_FIELD, sap.ui.model.FilterOperator.Contains, searchValue);
     oBinding.filter([oFilter]);
+  },
+
+onAddProductPress: async function () {
+  if (!this._productDialog) {
+    this._productDialog = await Fragment.load({
+      id: this.getView().getId(), // optional, for stable ID prefixing
+      name: "com.omer.myapp.view.CreateProductDialog",
+      controller: this
+    });
+    this._productDialog.setModel(new JSONModel({
+      id: "",
+    name: "",
+    price: 0
+}), "productModel");
+    this.getView().addDependent(this._productDialog);
   }
+
+  this._productDialog.open();
+},
+onCancel: function() {
+  this._productDialog.close();
+},
+onCreateProduct: function() {
+ const productData = this._productDialog.getModel("productModel").getData();
+  console.log(productData);
+}
   });
 });

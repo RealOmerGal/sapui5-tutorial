@@ -67,5 +67,16 @@
                 </ColumnListItem>
             </items>
         </Table>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button
+                        text="addProduct"
+                        type="Emphasized"
+                        press="onAddProductPress"
+                    />
+                </contentRight>
+            </Bar>
+        </footer>
     </Page>
 </mvc:View>
